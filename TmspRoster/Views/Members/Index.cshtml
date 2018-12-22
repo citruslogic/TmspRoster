@@ -1,21 +1,24 @@
 ﻿@model IEnumerable<TmspRoster.Models.Member.Member>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TMSP ROSTER";
 }
 
-<h2>Index</h2>
+<h2>Roster</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "Members", FormMethod.Get))
-{
-    @Html.DropDownList("locationFilter", new SelectList(ViewBag.Location))
-    <input type="submit" value="Filter" />
-}
+
+<div class="extra-control">
+    @using (Html.BeginForm("Index", "Members", FormMethod.Get))
+    {
+        @Html.DropDownList("locationFilter", new SelectList(ViewBag.Location))
+        <input type="submit" value="Filter" />
+    }
+</div>
 <br />
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
