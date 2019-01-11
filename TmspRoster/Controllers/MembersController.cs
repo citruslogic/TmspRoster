@@ -30,6 +30,7 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members
+        [Authorize(Roles = "Member, Admin, Supervisor")]
         public ActionResult Index(string locationFilter)
         {
             ViewBag.Location = from item in SetViewBagDdlLocation()
@@ -50,6 +51,7 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members/Details/5
+        [Authorize(Roles = "Member, Admin, Supervisor")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -65,6 +67,7 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members/Create
+        [Authorize(Roles = "Admin, Supervisor")]
         public ActionResult Create()
         {
             return View();
@@ -73,6 +76,7 @@ namespace TmspRoster.Controllers
         // POST: Members/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin, Supervisor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MemberID,LastName,FirstMidName,City,Territory,JoinDate,Status,PlateNumber")] Member member)
@@ -88,6 +92,7 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members/Edit/5
+        [Authorize(Roles = "Admin, Supervisor")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -105,6 +110,7 @@ namespace TmspRoster.Controllers
         // POST: Members/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin, Supervisor")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MemberID,LastName,FirstMidName,City,Territory,JoinDate,Status,PlateNumber")] Member member)
@@ -119,6 +125,7 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members/Delete/5
+        [Authorize(Roles = "Admin, Supervisor")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -134,6 +141,7 @@ namespace TmspRoster.Controllers
         }
 
         // POST: Members/Delete/5
+        [Authorize(Roles = "Admin, Supervisor")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
