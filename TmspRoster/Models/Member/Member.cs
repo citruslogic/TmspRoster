@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TmspRoster.Models.Enums;
 
+
 namespace TmspRoster.Models.Member
 {
     public class Member
@@ -36,6 +37,6 @@ namespace TmspRoster.Models.Member
         public string FullName => FirstMidName + " " + LastName;
 
         public string Location => City + ", " + Territory;
-
+                
     }
 }

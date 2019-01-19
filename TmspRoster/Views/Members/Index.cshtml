@@ -6,15 +6,18 @@
 
 <h2>Roster</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (ViewBag.IsPrivileged)
+{
+    <p>
+        @Html.ActionLink("Add New Member", "Create")
+    </p>
+}
 
 <div class="extra-control">
     @using (Html.BeginForm("Index", "Members", FormMethod.Get))
     {
-        @Html.DropDownList("locationFilter", new SelectList(ViewBag.Location))
-        <input type="submit" value="Filter" />
+        @Html.DropDownList("locationFilter", new SelectList(ViewBag.Location), new { @class = "form-control" })
+        <input type="submit" value="Filter" style="background-color: darkgray; color: white;" />
     }
 </div>
 <br />
@@ -69,9 +72,11 @@
                 @Html.DisplayFor(modelItem => item.PlateNumber)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.MemberID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MemberID })
+                @if (ViewBag.IsPrivileged)
+                {@Html.ActionLink("Edit", "Edit", new { id = item.MemberID }) @Html.Raw("| ")}
+                @Html.ActionLink("Details", "Details", new { id = item.MemberID })
+                @if (ViewBag.IsPrivileged)
+                {@Html.Raw("| ") @Html.ActionLink("Delete", "Delete", new { id = item.MemberID })}
             </td>
         </tr>
     }

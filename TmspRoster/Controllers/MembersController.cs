@@ -30,11 +30,13 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members
-        [Authorize(Roles = "Member, Admin, Supervisor")]
+        [Authorize]
         public ActionResult Index(string locationFilter)
         {
             ViewBag.Location = from item in SetViewBagDdlLocation()
                                select item.Text;
+
+            ViewBag.IsPrivileged = User.IsInRole("Admin") || User.IsInRole("Supervisor");
 
             var members = from m in db.Members
                           select m;
@@ -51,7 +53,7 @@ namespace TmspRoster.Controllers
         }
 
         // GET: Members/Details/5
-        [Authorize(Roles = "Member, Admin, Supervisor")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)

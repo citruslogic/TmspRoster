@@ -9,6 +9,21 @@
     padding-right: 15px;
 }
 
+a {
+    font-weight: bold;
+    color: aliceblue;
+}
+
+a:hover {
+    font-weight: bold;
+    color: crimson;
+    background-color: black;
+}
+
+a:visited {
+    color: darkblue;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
